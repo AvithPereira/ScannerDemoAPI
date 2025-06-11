@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ScannerDemoAPI.Data;
 using ScannerDemoAPI.Models;
@@ -23,6 +24,7 @@ namespace ScannerDemoAPI.Controllers
             return Ok("Hello from ScannerDemo API!");
         }
 
+        [Authorize]
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] UserInfoDto userInfo)
         {
@@ -38,6 +40,7 @@ namespace ScannerDemoAPI.Controllers
             return Ok("Login successful.");
         }
 
+        [Authorize]
         [HttpGet("getcartitems")]
         public async Task<IActionResult> GetCartItems()
         {
@@ -51,6 +54,7 @@ namespace ScannerDemoAPI.Controllers
             return Ok(cartItems);
         }
 
+        [Authorize]
         [HttpPost("upsertcartitem")]
         public async Task<IActionResult> UpsertCartItem([FromBody] CartItemDto cartItemDto)
         {
@@ -72,6 +76,7 @@ namespace ScannerDemoAPI.Controllers
             return Ok("Cart item upserted successfully.");
         }
 
+        [Authorize]
         [HttpPost("removecartitem")]
         public async Task<IActionResult> RemoveCartItem([FromBody] CartItemDto cartItemDto)
         {
